@@ -1,0 +1,48 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+def makeVersion() {
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+
+    def versionCode = versionMajor * 10000000 + versionMinor * 100000 + versionPatch * 10000
+    return ["versionCode" : versionCode,
+            "versionName": "${versionMajor}.${versionMinor}.${versionPatch}"]
+}
+
+def version = makeVersion()
+
+ext {
+    appName = 'MergedAdapter'
+    compileSdkVersion = 28
+    minSdkVersion = 19
+    targetSdkVersion = 28
+    versionCode = version.versionCode
+    versionName = version.versionName
+}
